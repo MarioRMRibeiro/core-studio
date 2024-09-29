@@ -1,0 +1,53 @@
+<!-- manage_sessions.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage PT Sessions</title>
+    <style>
+        /* Styling similar to previous pages */
+    </style>
+</head>
+<body>
+    <header>
+        Manage PT Sessions
+    </header>
+    <div class="container">
+        <form action="/admin/sessions" method="POST">
+            <label for="day">Day:</label>
+            <input type="text" id="day" name="day" required>
+
+            <label for="time">Time:</label>
+            <input type="text" id="time" name="time" required>
+
+            <label for="spots">Available Spots:</label>
+            <input type="number" id="spots" name="spots" required>
+
+            <button type="submit">Create Session</button>
+        </form>
+
+        <h2>Existing Sessions</h2>
+        <table>
+            <tr>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Spots</th>
+                <th>Actions</th>
+            </tr>
+            {% for session in sessions %}
+            <tr>
+                <td>{{ session.day }}</td>
+                <td>{{ session.time }}</td>
+                <td>{{ session.spots }}</td>
+                <td>
+                    <form action="/admin/delete_session/{{ session.id }}" method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

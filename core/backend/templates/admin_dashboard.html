@@ -1,0 +1,31 @@
+<h1>Admin Dashboard</h1>
+
+<a href="{{ url_for('main.create_session') }}">Create New Session</a>
+
+<table>
+    <tr>
+        <th>Session ID</th>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Available Spots</th>
+        <th>Bookings</th>
+        <th>Actions</th>
+    </tr>
+    {% for session in sessions %}
+    <tr>
+        <td>{{ session.id }}</td>
+        <td>{{ session.day }}</td>
+        <td>{{ session.time }}</td>
+        <td>{{ session.available_spots }}</td>
+        <td>
+            {% for booking in session.bookings %}
+            {{ booking.user.username }} ({{ booking.user.email }})<br>
+            {% endfor %}
+        </td>
+        <td>
+            <a href="{{ url_for('main.edit_session', session_id=session.id) }}">Edit</a> |
+            <a href="{{ url_for('main.delete_session', session_id=session.id) }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

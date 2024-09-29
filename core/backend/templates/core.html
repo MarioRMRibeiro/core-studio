@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home and Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Welcome to PT Scheduling App</h1>
+
+    {% if current_user.is_authenticated %}
+        <p>Hello, {{ current_user.username }}!</p>
+        
+        {% if current_user.role == 'admin' %}
+            <a href="{{ url_for('main.admin_dashboard') }}">Go to Admin Dashboard</a>
+        {% else %}
+            <a href="{{ url_for('main.book_session') }}">Book a PT Session</a>
+        {% endif %}
+        
+        <form action="{{ url_for('main.logout') }}" method="POST">
+            <button type="submit">Logout</button>
+        </form>
+    
+    {% else %}
+        <!-- Login Form -->
+        <form action="/" method="POST">
+            <h2>Login</h2>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </form>
+
+        <!-- Register Link -->
+        <p>Don't have an account? <a href="{{ url_for('main.register') }}">Register here</a></p>
+    {% endif %}
+</body>
+</html>

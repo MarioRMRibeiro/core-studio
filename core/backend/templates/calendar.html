@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: #f1c40f;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #111;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+        .container {
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #333;
+            color: #f1c40f;
+        }
+        table, th, td {
+            border: 1px solid #555;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #111;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Appointment Calendar
+    </header>
+    <div class="container">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+            <!-- This should be populated with appointment data from the backend -->
+            <tr>
+                <td>John Doe</td>
+                <td>Physical Therapy</td>
+                <td>2024-09-20</td>
+                <td>14:00</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

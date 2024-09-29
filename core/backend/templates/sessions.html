@@ -1,0 +1,40 @@
+<!-- sessions.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available PT Sessions</title>
+    <style>
+        /* Styling similar to previous pages */
+    </style>
+</head>
+<body>
+    <header>
+        Available PT Sessions
+    </header>
+    <div class="container">
+        <table>
+            <tr>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Spots</th>
+                <th>Actions</th>
+            </tr>
+            {% for session in sessions %}
+            <tr>
+                <td>{{ session.day }}</td>
+                <td>{{ session.time }}</td>
+                <td>{{ session.spots }}</td>
+                <td>
+                    <form action="/book_session/{{ session.id }}" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <button type="submit">Book</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
